@@ -40,17 +40,16 @@ for base_note in base_notes:
             os.system("timidity --output-24bit -A120 base_note.mid -Ow -o base_note.wav")
             os.system("timidity --output-24bit -A120 interval_note.mid -Ow -o interval_note.wav")
             os.system("sox base_note.wav base_note_short.wav trim 0 1.5")
-            os.system("sox interval_note.wav interval_note_short.wav trim 0 2")
-            os.system("sox instructions/sing_" +
-                interval_directions[direction_ind] + "_" +
+            os.system("sox interval_note.wav interval_note_short.wav trim 0 4.5")
+            os.system("sox instructions/" +
                 interval_names[interval_ind] +
-                ".wav instructions.wav trim 0 4")
-            os.system("sox base_note_short.wav instructions.wav interval_note_short.wav combined.wav")
-            os.system("lame -a --tt 'Sing " +
+                ".wav instructions.wav trim 0 1.5")
+            os.system("sox base_note_short.wav interval_note_short.wav instructions.wav combined.wav")
+            os.system("lame -a --tt 'Id " +
                 interval_directions[direction_ind] + " " +
                 interval_names[interval_ind] + " from " +
                 base_note +
-                "' --tl 'Ear Training Prompts' --ta 'Evan Ray' -b 96 combined.wav sing-intervals/sing_" +
+                "' --tl 'Ear Training Prompts' --ta 'Evan Ray' -b 96 combined.wav id-intervals/id_" +
                 interval_directions[direction_ind] + "_" +
                 interval_names[interval_ind] + "_from_" +
                 base_note +
